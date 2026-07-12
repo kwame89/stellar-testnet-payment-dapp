@@ -70,13 +70,17 @@ app.js        All wallet/Stellar logic (connect, disconnect, balance, send, feed
 
 ## Screenshots
 
-_Add screenshots to the `screenshots/` folder and reference them here before submitting:_
-
 **Wallet connected**
 ![Wallet connected](screenshots/wallet-connected.png)
 
 **Balance displayed**
 ![Balance displayed](screenshots/balance-displayed.png)
 
-**Successful testnet transaction**
+**Successful testnet transaction (result shown to the user)**
 ![Transaction success](screenshots/transaction-success.png)
+
+Supporting evidence — the same transaction confirmed in the Freighter extension and on the
+[Stellar Expert](https://stellar.expert/explorer/testnet) block explorer:
+
+![Freighter extension balance](screenshots/freighter-extension-balance.png)
+![Stellar Expert confirmation](screenshots/stellar-expert-confirmation.png)
