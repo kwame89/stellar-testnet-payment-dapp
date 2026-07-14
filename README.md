@@ -1,3 +1,14 @@
+# Stellar Journey to Mastery — Submissions
+
+## Course levels
+
+- 🟢 **White Belt, Level 1** (this folder) — single-wallet payment dApp. See below.
+- 🟡 **Yellow Belt, Level 2** ([`level-2/`](level-2/)) — multi-wallet live poll dApp with a
+  deployed Soroban smart contract, contract calls, and real-time event sync. See
+  [`level-2/README.md`](level-2/README.md).
+
+---
+
 # Stellar Testnet Payment dApp
 
 A minimal dApp for the Stellar Frontend Challenge (White Belt, Level 1). Connect a Freighter
