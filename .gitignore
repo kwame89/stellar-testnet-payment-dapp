@@ -1,2 +1,4 @@
 .DS_Store
 .claude/
+level-2/contract/target/
+level-2/contract/test_snapshots/
