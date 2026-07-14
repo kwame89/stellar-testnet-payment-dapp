@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stellar Live Poll dApp</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="app-header">
+      <h1>Stellar Live Poll</h1>
+      <span class="network-badge">TESTNET</span>
+    </header>
+
+    <section class="card" id="wallet-card">
+      <h2>1. Wallet</h2>
+      <div id="wallet-disconnected" class="wallet-state">
+        <p class="muted">Connect any supported Stellar wallet to vote.</p>
+        <button id="connect-btn" class="btn btn-primary">Connect Wallet</button>
+        <p id="wallet-note" class="note hidden"></p>
+      </div>
+      <div id="wallet-connected" class="wallet-state hidden">
+        <p class="muted">Connected address</p>
+        <p id="wallet-address" class="address-value">—</p>
+        <button id="disconnect-btn" class="btn btn-secondary">Disconnect</button>
+      </div>
+    </section>
+
+    <section class="card" id="poll-card">
+      <h2>2. Poll</h2>
+      <p id="poll-question" class="poll-question">Loading poll…</p>
+      <div id="poll-options"></div>
+      <p id="poll-note" class="note hidden"></p>
+    </section>
+
+    <section class="card" id="status-card">
+      <h2>3. Transaction Status</h2>
+      <div id="status-idle" class="status-box status-idle">
+        <p class="muted">No transaction submitted yet.</p>
+      </div>
+      <div id="status-pending" class="status-box status-pending hidden">
+        <div class="spinner"></div>
+        <p>Submitting your vote…</p>
+      </div>
+      <div id="status-success" class="status-box status-success hidden">
+        <p class="status-title">✅ Vote confirmed</p>
+        <p class="muted">Hash</p>
+        <p id="success-hash" class="hash-value">—</p>
+        <a id="success-link" href="#" target="_blank" rel="noopener noreferrer">View on Stellar Expert →</a>
+      </div>
+      <div id="status-error" class="status-box status-error hidden">
+        <p class="status-title">❌ Vote failed</p>
+        <p id="error-message" class="muted">—</p>
+      </div>
+    </section>
+
+    <section class="card" id="activity-card">
+      <h2>4. Live Activity Feed</h2>
+      <p id="activity-empty" class="muted">No votes yet — be the first!</p>
+      <ul id="activity-feed" class="activity-feed"></ul>
+    </section>
+
+    <footer class="app-footer">
+      <p>Built for the Stellar Frontend Challenge — Yellow Belt, Level 2.</p>
+    </footer>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
