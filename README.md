@@ -6,6 +6,12 @@
 - 🟡 **Yellow Belt, Level 2** ([`level-2/`](level-2/)) — multi-wallet live poll dApp with a
   deployed Soroban smart contract, contract calls, and real-time event sync. See
   [`level-2/README.md`](level-2/README.md).
+- 🟠 **Orange Belt, Level 3** ([`level-3/`](level-3/)) — Poll Factory + Rewards: three
+  inter-communicating Soroban contracts (a Factory that deploys Poll instances on demand, and a
+  Poll that calls a Rewards contract on every vote), a Vite/TypeScript frontend with a real CI/CD
+  pipeline and Vercel deployment, and 31 passing tests across contracts and frontend. See
+  [`level-3/README.md`](level-3/README.md). Live demo:
+  https://poll-factory-level3.vercel.app
 
 ---
 
