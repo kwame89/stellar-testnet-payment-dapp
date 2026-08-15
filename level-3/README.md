@@ -254,8 +254,14 @@ level-3/
 
 ## Screenshots
 
-See [`screenshots/`](screenshots/) — mobile-responsive UI, the CI pipeline run, and the contract +
-frontend test output.
+**Mobile-responsive UI** (live production site)
+![Mobile UI](screenshots/mobile-ui.png)
+
+**CI pipeline — both jobs green**
+![CI pipeline](screenshots/ci-pipeline.png)
+
+**Test output — 31 passing (13 contract + 18 frontend)**
+![Test output](screenshots/test-output.png)
 
 ## Demo video
 
