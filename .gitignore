@@ -2,3 +2,5 @@
 .claude/
 level-2/contract/target/
 level-2/contract/test_snapshots/
+level-3/contracts/target/
+level-3/contracts/*/test_snapshots/
