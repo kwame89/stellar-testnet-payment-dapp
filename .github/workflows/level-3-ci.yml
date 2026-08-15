@@ -1,0 +1,83 @@
+name: Level 3 CI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "level-3/**"
+      - ".github/workflows/level-3-ci.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "level-3/**"
+      - ".github/workflows/level-3-ci.yml"
+
+jobs:
+  contracts:
+    name: Contracts (Rust / Soroban)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: level-3/contracts
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: wasm32v1-none
+
+      - name: Cache cargo
+        uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: level-3/contracts
+
+      # Build order matters: Poll's contractimport! reads Rewards' compiled
+      # wasm at compile time, and Factory's tests read Poll's — these aren't
+      # Cargo package dependencies, so `cargo test --workspace` alone can't
+      # infer the order. Each step here must succeed before the next.
+      - name: Build Rewards wasm (Poll's contractimport! target)
+        run: cargo build -p rewards --target wasm32v1-none --release
+
+      - name: Build Poll wasm (Factory's test contractimport! target)
+        run: cargo build -p poll --target wasm32v1-none --release
+
+      - name: Build Factory wasm
+        run: cargo build -p factory --target wasm32v1-none --release
+
+      - name: Run all contract tests
+        run: cargo test --workspace
+
+  frontend:
+    name: Frontend (Vite / TypeScript)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: level-3/frontend
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: level-3/frontend/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm test
+
+      - name: Type-check and build
+        run: npm run build
+        env:
+          # Placeholder values — real deployed contract IDs live in Vercel's
+          # env config for the actual production build (see ../README.md).
+          # A production `vite build` only needs these to exist at all;
+          # import.meta.env references are statically replaced at bundle
+          # time, not executed, so a placeholder is enough to prove the
+          # build pipeline itself is sound.
+          VITE_FACTORY_CONTRACT_ID: CI_PLACEHOLDER
+          VITE_REWARDS_CONTRACT_ID: CI_PLACEHOLDER
