@@ -1,0 +1,14 @@
+[package]
+name = "poll"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+soroban-sdk = "27"
+
+[dev-dependencies]
+soroban-sdk = { version = "27", features = ["testutils"] }
