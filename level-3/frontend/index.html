@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Poll Factory — Stellar Testnet</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="app-header">
+        <h1>Poll Factory</h1>
+        <span class="network-badge">Stellar Testnet</span>
+      </header>
+
+      <section class="card" id="wallet-card">
+        <h2>Wallet</h2>
+        <div id="wallet-disconnected">
+          <button id="connect-btn" class="btn btn-primary">Connect Wallet</button>
+        </div>
+        <div id="wallet-connected" class="hidden">
+          <p class="address-value" id="wallet-address">—</p>
+          <p class="muted" id="wallet-points"></p>
+          <button id="disconnect-btn" class="btn btn-secondary">Disconnect</button>
+        </div>
+        <p class="note hidden" id="wallet-note"></p>
+      </section>
+
+      <section class="card" id="create-poll-card">
+        <h2>Create a poll</h2>
+        <p class="muted">Connect a wallet to create a poll — anyone can spin one up.</p>
+        <form id="create-poll-form">
+          <input type="text" id="new-question" placeholder="Your question" required maxlength="140" />
+          <div id="new-options"></div>
+          <div class="form-row">
+            <button type="button" id="add-option-btn" class="btn btn-secondary">+ Add option</button>
+            <button type="submit" id="create-poll-btn" class="btn btn-primary">Create poll</button>
+          </div>
+        </form>
+        <p class="note hidden" id="create-poll-note"></p>
+      </section>
+
+      <section class="card" id="status-card">
+        <h2>Transaction status</h2>
+        <div id="status-idle" class="status-box status-idle">
+          <p class="muted">No recent activity.</p>
+        </div>
+        <div id="status-pending" class="status-box status-pending hidden">
+          <div class="spinner"></div>
+          <span>Waiting for confirmation…</span>
+        </div>
+        <div id="status-success" class="status-box status-success hidden">
+          <p class="status-title">Success</p>
+          <p class="hash-value" id="success-hash">—</p>
+          <a id="success-link" href="#" target="_blank" rel="noopener noreferrer">View on Stellar Expert →</a>
+        </div>
+        <div id="status-error" class="status-box status-error hidden">
+          <p class="status-title">Error</p>
+          <p id="error-message"></p>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Polls</h2>
+        <div id="polls-loading" class="muted">Loading polls…</div>
+        <div id="polls-empty" class="muted hidden">No polls yet — create the first one above.</div>
+        <div id="polls-list"></div>
+      </section>
+
+      <section class="card">
+        <h2>Live activity</h2>
+        <p class="muted hidden" id="activity-empty">No activity yet — it'll appear here as polls are created and voted on, anywhere, by anyone.</p>
+        <ul class="activity-feed" id="activity-feed"></ul>
+      </section>
+
+      <footer class="app-footer">
+        Level 3 (Orange Belt) — Poll Factory + Rewards · Stellar Testnet, not real funds
+      </footer>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
